@@ -1,0 +1,129 @@
+<html>
+
+<head>
+
+<title>A truly naked, brutalist html quine</title>
+
+</head>
+
+<body>
+
+<h1>A truly naked, brutalist html quine</h1>
+
+<p>One of my favorite things is to misuse technology in creative ways. Breaking the rules without breaking the rules.</p>
+
+<p>For example, a hobby project I built long ago was <a href='https://github.com/secretGeek/dod'>DOS-on-dope</a>, a working Ruby-on-rails parody, billed as <em>the last batch-file based MVC framework you'll ever need</em>. And there was <a href='http://www.secretgeek.net/console_log'>a console.log() adventure</a> in which you played an old school console-adventure-game from inside the chrome developer tools.</p>
+
+<p>The world of esoteric programming is filled with examples of people stretching the rules to breaking point, and misusing technology in creative ways. In particular (for example) I love <a href='http://wiki.secretgeek.net/quine'>quines</a>. Quines are programs which output their own source code.</p>
+
+<p>A different but somehow related topic I like is <a href='https://en.wikipedia.org/wiki/Brutalist_architecture'>brutalism</a>, in particular, this often overlooked aspect:</p>
+
+<blockquote>Another common theme in Brutalist designs is the exposure of the building's functions.</blockquote>
+
+<p>...the tendency to make the internal external, and reveal the secrets of the building, in a somehow.... <em>brutaful</em> way. ;-).</p>
+
+<p>A similarly intriguing idea which has fallen into disuse is the idea of <a href='https://en.wikipedia.org/wiki/Naked_objects'>naked objects</a>, wherein:</p>
+
+<blockquote>The user interface should be a direct representation of the domain objects.</blockquote>
+
+<p>Putting all this together I decided to make a truly naked, brutalist html page, that is itself a quine. And this page is it.</p>
+
+<p>Viewing the source of this page should reveal a page identical to the page you are now seeing. Nothing is hidden. It's a true "What you see is what you get."</p>
+
+<h2>How it works.</h2>
+
+<p>Did you know that the rules of html allow you to make <strong>every</strong> element visible, even elements like 'title' or 'style' or 'script', that are normally hidden from view? Those are just elements like any other. You can expose them <strong>all</strong> like so:</p>
+
+<style>* { display:block; }</style>
+
+<p>With that snippet of code, which is <strong>not</strong> a snippet of code, but an <strong>actual</strong> style block itself, you will see that every element, including that style block, is now made visible.</p>
+
+<p>It does have a slight downside, in that every element on the page is now a "block" element, even some which should be "inline", such as "code" and "anchor" elements. We can correct this like so:</p>
+
+<style>a,code,em,strong {display:inline}</style>
+
+<p>To give the code a more 'view source' feel, I've also applied monospace fonts, and a generally simple and consistent style to all elements, using a "*" selector, like so:</p>
+
+<style>*{ font-family:Monospace; margin:1.5em 0; padding:0; text-decoration:none}</style>
+
+<h2>Make the internal external</h2>
+
+<p>The next trick is to make the internal external. We can start by ensuring that the tags themselves, such as paragraph tags, are exposed in their stark, brutal, beauty:</p>
+
+<style>p::before {content:'<p>'}; p::after {content:'</p>'}</style>
+
+<p>That works for "p" elements, but do we need to have custom styling for <strong>every</strong> element? If there was a way to output the "name" of a tag in html, then we could reduce all of the neccesarry style rules above to something like:</p>
+
+<blockquote>*::before { '<' name() '>'}
+</blockquote>
+
+<p>And...
+
+<blockquote><pre>*::after { '<\/' name() '>'}</pre></blockquote>
+
+
+<p>But alas there is not. So we are forced to generate a chunk of style information like this (via <a href="http://NimbleText.com/live/">NimbleText</a> of course)</p>
+
+
+<style>html::before {content:'<html>'}</style>
+<style>html::after {content:'</html>'}</style>
+<style>head::before {content:'<head>'}</style>
+<style>head::after {content:'</head>'}</style>
+<style>title::before {content:'<title>'}</style>
+<style>title::after {content:'</title>'}</style>
+<style>body::before {content:'<body>'}</style>
+<style>body::after {content:'</body>'}</style>
+<style>h1::before {content:'<h1>'}</style>
+<style>h1::after {content:'</h1>'}</style>
+<style>h2::before {content:'<h2>'}</style>
+<style>h2::after {content:'</h2>'}</style>
+<style>p::before {content:'<p>'}</style>
+<style>p::after {content:'</p>'}</style>
+<style>pre::before {content:'<pre>'}</style>
+<style>pre::after {content:'</pre>'}</style>
+<style>code::before {content:'<code>'}</style>
+<style>code::after {content:'</code>'}</style>
+<style>a::before {content:'<a>'}</style>
+<style>a::after {content:'</a>'}</style>
+<style>blockquote::before {content:'<blockquote>'}</style>
+<style>blockquote::after {content:'</blockquote>'}</style>
+
+<style>em::before {content:'<em>'}</style>
+<style>em::after {content:'</em>'}</style>
+<style>strong::before {content:'<strong>'}</style>
+<style>strong::after {content:'</strong>'}</style>
+
+<p>Some elements are a little trickier because they have attributes. Consider for example the "anchor" which often has a <code>href</code> attribute, and we want <strong>that</strong> to be visible, including its value. This is done like so:</p>
+
+<style>a[href]:before {content: "<a href='" attr(href) "'>"}</style>
+
+<p>The <code>attr()</code> function is a nifty trick, "supported" since CSS 2.</p>
+
+
+<p>The only other style that is special is "style" itself, which has to include a little escape character so it is not taken literally.</p>
+
+<style>style::before {content:'<style>'}</style>
+<style>style::after {content:'<\/style>'}</style>
+
+<p>I'm not sure but that may be a parser bug created by browser developers who did not suspect that people would engage in such an atrocity.</p>
+
+<p>Finally to reduce the visual weight of the before and after pseudo elements we can give them a soft purple color and a low weight font:</p>
+<style>*::before,*::after { color:rgb(136, 18, 128, 0.5);font-weight:100 }</style>
+
+<p>A different though similar thing I wanted to do was to make a markdown.css file that displays html as markdown. Fortunately I found that some other twisted person had <a href='https://mrcoles.com/demo/markdown-css/'>already done exactly that.</a></p>
+
+<p>Finally, because I believe brutalist design, even when applied to truly naked brutal html quines, is about function, not about deliberate ugliness, I'd like to apply these humble styles that improve the readability of this brutiful missive.</p>
+
+<style>
+html { max-width:38rem;
+padding:2rem;
+margin:auto;
+color:#333;
+font-size:1.2em;}
+</style>
+
+<p>kind regards</p>
+<p><a href='http://secretGeek.net'>Leon</a></p>
+
+</body>
+</html>
