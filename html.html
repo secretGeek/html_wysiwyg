@@ -2,13 +2,13 @@
 
 <head>
 
-<title>A truly naked, brutalist html quine</title>
+<title>This page is a truly naked, brutalist html quine</title>
 
 </head>
 
 <body>
 
-<h1>A truly naked, brutalist html quine</h1>
+<h1>This page is a truly naked, brutalist html quine</h1>
 
 <p>One of my favorite things is to misuse technology in creative ways. Breaking the rules without breaking the rules.</p>
 
@@ -20,7 +20,7 @@
 
 <blockquote>Another common theme in Brutalist designs is the exposure of the building's functions.</blockquote>
 
-<p>...the tendency to make the internal external, and reveal the secrets of the building, in a somehow.... <em>brutaful</em> way. ;-).</p>
+<p>...the tendency to <strong>make the internal external</strong>, and reveal the secrets of the building, in a somehow.... <em>brutaful</em> way. ;-).</p>
 
 <p>A similarly intriguing idea which has fallen into disuse is the idea of <a href='https://en.wikipedia.org/wiki/Naked_objects'>naked objects</a>, wherein:</p>
 
@@ -32,17 +32,17 @@
 
 <h2>How it works.</h2>
 
-<p>Did you know that the rules of html allow you to make <strong>every</strong> element visible, even elements like 'title' or 'style' or 'script', that are normally hidden from view? Those are just elements like any other. You can expose them <strong>all</strong> like so:</p>
+<p>Did you know that the rules of html and css allow you to make <strong>every</strong> element visible, even elements like 'title' or 'style' or 'script', that are normally hidden from view? Those are just elements like any other. You can expose them <strong>all</strong> like so:</p>
 
 <style>* { display:block; }</style>
 
-<p>With that snippet of code, which is <strong>not</strong> a snippet of code, but an <strong>actual</strong> style block itself, you will see that every element, including that style block, is now made visible.</p>
+<p>With that snippet of code (which is <strong>not</strong> a snippet of code, but an <strong>actual</strong> style block itself!) you can now see every element of this page, including that style block, the html and title tags, etc.</p>
 
-<p>It does have a slight downside, in that every element on the page is now a "block" element, even some which should be "inline", such as "code" and "anchor" elements. We can correct this like so:</p>
+<p>It does have one downside: every element on the page is now a "block" element, even some which should be "inline", such as "code" and "anchor" elements. We can correct this like so:</p>
 
 <style>a,code,em,strong {display:inline}</style>
 
-<p>To give the code a more 'view source' feel, I've also applied monospace fonts, and a generally simple and consistent style to all elements, using a "*" selector, like so:</p>
+<p>To give the code a more 'view source' feel, I've also applied <code>monospace</code> fonts, and a generally simple and consistent style to all elements, using a "*" selector, like so:</p>
 
 <style>*{ font-family:Monospace; margin:1.5em 0; padding:0; text-decoration:none}</style>
 
@@ -64,6 +64,7 @@
 
 <p>But alas there is not. So we are forced to generate a chunk of style information like this (via <a href="http://NimbleText.com/live/">NimbleText</a> of course)</p>
 
+<p>Please scroll happily past the next 28 lines...</p>
 
 <style>html::before {content:'<html>'}</style>
 <style>html::after {content:'</html>'}</style>
@@ -85,42 +86,43 @@
 <style>code::after {content:'</code>'}</style>
 <style>a::before {content:'<a>'}</style>
 <style>a::after {content:'</a>'}</style>
+<style>aside::before {content:'<aside>'}</style>
+<style>aside::after {content:'</aside>'}</style>
 <style>blockquote::before {content:'<blockquote>'}</style>
 <style>blockquote::after {content:'</blockquote>'}</style>
-
 <style>em::before {content:'<em>'}</style>
 <style>em::after {content:'</em>'}</style>
 <style>strong::before {content:'<strong>'}</style>
 <style>strong::after {content:'</strong>'}</style>
 
-<p>Some elements are a little trickier because they have attributes. Consider for example the "anchor" which often has a <code>href</code> attribute, and we want <strong>that</strong> to be visible, including its value. This is done like so:</p>
+<p>Some elements are a little trickier because they have attributes. Consider for example the "anchor" which often has a <code>href</code> attribute. We <em>need</em> that attribute to be visible, including its value. This is done like so:</p>
 
 <style>a[href]:before {content: "<a href='" attr(href) "'>"}</style>
 
-<p>The <code>attr()</code> function is a nifty trick, "supported" since CSS 2.</p>
+<p>The <code>attr()</code> function, see <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/attr'>mozilla docs</a> is a nifty trick, "supported" since CSS 2.</p>
 
 
-<p>The only other style that is special is "style" itself, which has to include a little escape character so it is not taken literally.</p>
+<p>The only other style that is special is "style" itself, which has to include an escape character to avoid being taken literally.</p>
 
 <style>style::before {content:'<style>'}</style>
 <style>style::after {content:'<\/style>'}</style>
 
-<p>I'm not sure but that may be a parser bug created by browser developers who did not suspect that people would engage in such an atrocity.</p>
+
+<p>(I like to think that may be a parser bug created by browser developers who did not suspect that people would engage in such an atrocity.)</p>
+
 
 <p>Finally to reduce the visual weight of the before and after pseudo elements we can give them a soft purple color and a low weight font:</p>
+
 <style>*::before,*::after { color:rgb(136, 18, 128, 0.5);font-weight:100 }</style>
 
-<p>A different though similar thing I wanted to do was to make a markdown.css file that displays html as markdown. Fortunately I found that some other twisted person had <a href='https://mrcoles.com/demo/markdown-css/'>already done exactly that.</a></p>
+<aside>A different though similar thing I wanted to do was to make a "markdown.css" file that displays html as markdown. Fortunately I found that some other twisted person had <a href='https://mrcoles.com/demo/markdown-css/'>already done exactly that.</a> Nice work Mr Coles.</aside>
 
 <p>Finally, because I believe brutalist design, even when applied to truly naked brutal html quines, is about function, not about deliberate ugliness, I'd like to apply these humble styles that improve the readability of this brutiful missive.</p>
 
-<style>
-html { max-width:38rem;
-padding:2rem;
-margin:auto;
-color:#333;
-font-size:1.2em;}
+<style>html { max-width:38rem; padding:2rem; margin:auto; color:#333; font-size:1.2em;}
 </style>
+
+<p>...they're derived from <a href='https://jrl.ninja/etc/1/'>"58 bytes of css to look great nearly everywhere"</a>.</p>
 
 <p>kind regards</p>
 <p><a href='http://secretGeek.net'>Leon</a></p>
