@@ -97,7 +97,7 @@
 
 <p>Some elements are a little trickier because they have attributes. Consider for example the "anchor" which often has a <code>href</code> attribute. We <em>need</em> that attribute to be visible, including its value. This is done like so:</p>
 
-<style>a[href]:before {content: "<a href='" attr(href) "'>"}</style>
+<style>a[href]::before {content: "<a href='" attr(href) "'>"}</style>
 
 <p>The <code>attr()</code> function, see <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/attr'>mozilla docs</a> is a nifty trick, "supported" since CSS 2.</p>
 
@@ -108,7 +108,7 @@
 <style>style::after {content:'<\/style>'}</style>
 
 
-<p>(I like to think that may be a parser bug created by browser developers who did not suspect that people would engage in such an atrocity.)</p>
+<aside>I like to think that may be a parser bug created by browser developers who did not suspect that people would engage in such an atrocity.</aside>
 
 
 <p>Finally to reduce the visual weight of the before and after pseudo elements we can give them a soft purple color and a low weight font:</p>
@@ -124,7 +124,7 @@
 
 <p>...they're derived from <a href='https://jrl.ninja/etc/1/'>"58 bytes of css to look great nearly everywhere"</a>.</p>
 
-<p>One last thing. Although this idea has bounced around in my head for a decade, the thing that reminded me to go and do it was seeing this piece of "Code as Art" from Geoff Huntley recently: <a href='https://noyaml.com/'>no yaml</a>.</p>
+<p>One last thing. Although this idea has bounced around in my head for a decade, the thing that reminded me to pipe it into a file was seeing this piece of "Code as Art" from Geoff Huntley: <a href='https://noyaml.com/'>no yaml</a>. Bring back the world weird web.</p>
 
 <p>Kind regards</p>
 <p><a href='http://secretGeek.net'>Leon</a></p>
