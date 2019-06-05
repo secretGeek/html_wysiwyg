@@ -1,0 +1,141 @@
+* {
+     display:block;
+}
+ a,code,em,strong {
+     display:inline 
+}
+ *{
+     font-family:Monospace;
+     margin:1.5em 0;
+     padding:0;
+     text-decoration:none 
+}
+
+/* tags with attributes. */
+
+ a[href]::before {
+     content: "<a href='" attr(href) "'>" 
+}
+ link[rel]::before {
+     content: "<link rel='" attr(rel) "' type='" attr(type)"' href='" attr(href) "'>" 
+}
+
+/* special escaping for close style */
+ style::before {
+     content:'<style>' 
+}
+ style::after {
+     content:'<\/style>' 
+}
+
+/* brutify */
+ *::before,*::after {
+     color:rgb(136, 18, 128, 0.5);
+     font-weight:100;
+     font-size:1.0em 
+}
+ html {
+     max-width:70ch;
+     padding:2ch;
+     margin:auto;
+     color:#333;
+     font-size:1.2em;
+}
+
+/* here is the highly repetitive bit */
+ p::before {
+     content:'<p>' 
+}
+ p::after {
+     content:'</p>' 
+}
+ html::before {
+     content:'<html>' 
+}
+ html::after {
+     content:'</html>' 
+}
+ head::before {
+     content:'<head>' 
+}
+ head::after {
+     content:'</head>' 
+}
+ title::before {
+     content:'<title>' 
+}
+ title::after {
+     content:'</title>' 
+}
+ link::before {
+     content:'<link>' 
+}
+ link::after {
+     content:'</link>' 
+}
+ body::before {
+     content:'<body>' 
+}
+ body::after {
+     content:'</body>' 
+}
+ h1::before {
+     content:'<h1>' 
+}
+ h1::after {
+     content:'</h1>' 
+}
+ h2::before {
+     content:'<h2>' 
+}
+ h2::after {
+     content:'</h2>' 
+}
+ p::before {
+     content:'<p>' 
+}
+ p::after {
+     content:'</p>' 
+}
+ pre::before {
+     content:'<pre>' 
+}
+ pre::after {
+     content:'</pre>' 
+}
+ code::before {
+     content:'<code>' 
+}
+ code::after {
+     content:'</code>' 
+}
+ a::before {
+     content:'<a>' 
+}
+ a::after {
+     content:'</a>' 
+}
+ aside::before {
+     content:'<aside>' 
+}
+ aside::after {
+     content:'</aside>' 
+}
+ blockquote::before {
+     content:'<blockquote>' 
+}
+ blockquote::after {
+     content:'</blockquote>' 
+}
+ em::before {
+     content:'<em>' 
+}
+ em::after {
+     content:'</em>' 
+}
+ strong::before {
+     content:'<strong>' 
+}
+ strong::after {
+     content:'</strong>' 
+}
