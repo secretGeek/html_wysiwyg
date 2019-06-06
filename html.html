@@ -2,13 +2,13 @@
 
 <head>
 
-<title>This page is a truly naked, brutalist html quine</title>
+<title>This page is a truly naked, brutalist html quine.</title>
 
 </head>
 
 <body>
 
-<h1>This page is a truly naked, brutalist html quine</h1>
+<h1>This page is a truly naked, brutalist html quine.</h1>
 
 <p>One of my favorite things is to misuse technology in creative ways. Breaking the rules without breaking the rules.</p>
 
@@ -46,54 +46,78 @@
 
 <style>*{ font-family:Monospace; margin:1.5em 0; padding:0; text-decoration:none}</style>
 
-<h2>Make the internal external</h2>
+<p>So far I've put style declarations all on one line, because ordinary html refuses to treat line breaks as "br" tags. But there is a way to make line-breaks display as line-breaks, and that is with this piece of styling:</p>
+
+<style>
+style, blockquote {
+  white-space: pre-wrap;
+}
+</style>
+
+<h2>Make the internal external.</h2>
 
 <p>The next trick is to make the internal external. We can start by ensuring that the tags themselves, such as paragraph tags, are exposed in their stark, brutal, beauty:</p>
 
-<style>p::before {content:'<p>'}; p::after {content:'</p>'}</style>
+<style>
+p::before {
+  content:'<p>'
+}
+p::after {
+  content:'</p>'
+}
+</style>
 
 <p>That works for "p" elements, but do we need to have custom styling for <strong>every</strong> element? If there was a way to output the "name" of a tag in html, then we could reduce all of the necessary style rules above to something like:</p>
 
-<blockquote>*::before { '<' name() '>'}
+<blockquote>
+*::before {
+ '<' name() '>'
+}
 </blockquote>
 
 <p>And...
 
-<blockquote><pre>*::after { '<\/' name() '>'}</pre></blockquote>
+<blockquote>
+*::after {
+ '<\/' name() '>'
+}
+</blockquote>
 
 
-<p>But alas there is not. So we are forced to generate a chunk of style information like this (via <a href="http://NimbleText.com/live/">NimbleText</a> of course)</p>
+<p>But alas there is no "name()" function (yet!). So we are forced to generate a chunk of style information like this (via <a href="https://nimbletext.com/Live/1105905186/">NimbleText</a> of course)</p>
 
-<p>Please scroll happily past the next 28 lines...</p>
+<p>Please scroll happily past the next 28 offensively repetitive lines...</p>
 
-<style>html::before {content:'<html>'}</style>
-<style>html::after {content:'</html>'}</style>
-<style>head::before {content:'<head>'}</style>
-<style>head::after {content:'</head>'}</style>
-<style>title::before {content:'<title>'}</style>
-<style>title::after {content:'</title>'}</style>
-<style>body::before {content:'<body>'}</style>
-<style>body::after {content:'</body>'}</style>
-<style>h1::before {content:'<h1>'}</style>
-<style>h1::after {content:'</h1>'}</style>
-<style>h2::before {content:'<h2>'}</style>
-<style>h2::after {content:'</h2>'}</style>
-<style>p::before {content:'<p>'}</style>
-<style>p::after {content:'</p>'}</style>
-<style>pre::before {content:'<pre>'}</style>
-<style>pre::after {content:'</pre>'}</style>
-<style>code::before {content:'<code>'}</style>
-<style>code::after {content:'</code>'}</style>
-<style>a::before {content:'<a>'}</style>
-<style>a::after {content:'</a>'}</style>
-<style>aside::before {content:'<aside>'}</style>
-<style>aside::after {content:'</aside>'}</style>
-<style>blockquote::before {content:'<blockquote>'}</style>
-<style>blockquote::after {content:'</blockquote>'}</style>
-<style>em::before {content:'<em>'}</style>
-<style>em::after {content:'</em>'}</style>
-<style>strong::before {content:'<strong>'}</style>
-<style>strong::after {content:'</strong>'}</style>
+<style>
+html::before {content:'<html>'}
+html::after {content:'</html>'}
+head::before {content:'<head>'}
+head::after {content:'</head>'}
+title::before {content:'<title>'}
+title::after {content:'</title>'}
+body::before {content:'<body>'}
+body::after {content:'</body>'}
+h1::before {content:'<h1>'}
+h1::after {content:'</h1>'}
+h2::before {content:'<h2>'}
+h2::after {content:'</h2>'}
+p::before {content:'<p>'}
+p::after {content:'</p>'}
+pre::before {content:'<pre>'}
+pre::after {content:'</pre>'}
+code::before {content:'<code>'}
+code::after {content:'</code>'}
+a::before {content:'<a>'}
+a::after {content:'</a>'}
+aside::before {content:'<aside>'}
+aside::after {content:'</aside>'}
+blockquote::before {content:'<blockquote>'}
+blockquote::after {content:'</blockquote>'}
+em::before {content:'<em>'}
+em::after {content:'</em>'}
+strong::before {content:'<strong>'}
+strong::after {content:'</strong>'}
+</style>
 
 <p>Some elements are a little trickier because they have attributes. Consider for example the "anchor" which often has a <code>href</code> attribute. We <em>need</em> that attribute to be visible, including its value. This is done like so:</p>
 
@@ -104,8 +128,10 @@
 
 <p>The only other style that is special is "style" itself, which has to include an escape character to avoid being taken literally.</p>
 
-<style>style::before {content:'<style>'}</style>
-<style>style::after {content:'<\/style>'}</style>
+<style>
+style::before {content:'<style>'}
+style::after {content:'<\/style>'}
+</style>
 
 
 <aside>I like to think that may be a parser bug created by browser developers who did not suspect that people would engage in such an atrocity.</aside>
@@ -113,13 +139,26 @@
 
 <p>Finally to reduce the visual weight of the before and after pseudo elements we can give them a soft purple color and a low weight font:</p>
 
-<style>*::before,*::after { color:rgb(136, 18, 128, 0.5);font-weight:100;font-size:1.0em }</style>
+<style>
+*::before,*::after {
+  color:rgb(136, 18, 128, 0.5);
+  font-weight:100;
+  font-size:1.0em
+}
+</style>
 
 <aside>A different though similar thing I wanted to do was to make a "markdown.css" file that displays html as markdown. Fortunately I found that some other twisted person had <a href='https://mrcoles.com/demo/markdown-css/'>already done exactly that.</a> Nice work Mr Coles.</aside>
 
 <p>Finally, because I believe brutalist design, even when applied to truly naked brutal html quines, is about function, not about deliberate ugliness, I'd like to apply these humble styles that improve the readability of this brutiful missive.</p>
 
-<style>html { max-width:70ch; padding:2ch; margin:auto; color:#333; font-size:1.2em;}
+<style>
+html {
+  max-width:70ch;
+  padding:2ch;
+  margin:auto;
+  color:#333;
+  font-size:1.2em;
+}
 </style>
 
 <p>...they're derived from <a href='https://jrl.ninja/etc/1/'>"58 bytes of css to look great nearly everywhere"</a>.</p>
