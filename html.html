@@ -4,6 +4,8 @@
 
 <title>This page is a truly naked, brutalist html quine.</title>
 
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
 </head>
 
 <body>
@@ -117,6 +119,7 @@ em::before {content:'<em>'}
 em::after {content:'</em>'}
 strong::before {content:'<strong>'}
 strong::after {content:'</strong>'}
+meta::before {content:'<meta>'}
 </style>
 
 <p>Some elements are a little trickier because they have attributes. Consider for example the "anchor" which often has a <code>href</code> attribute. We <em>need</em> that attribute to be visible, including its value. This is done like so:</p>
@@ -124,6 +127,14 @@ strong::after {content:'</strong>'}
 <style>a[href]::before {content: "<a href='" attr(href) "'>"}</style>
 
 <p>The <code>attr()</code> function, see <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/attr'>mozilla docs</a> is a nifty trick, "supported" since CSS 2.</p>
+
+<p>We can do the same thing for meta tag as well:</p>
+
+<style>meta[name]::before {content: "<meta name='" attr(name) "' content='" attr(content) "'>"}</style>
+
+<p>And let's fix anchor tag for small screens:</p>
+
+<style>a[href]::before {word-break: break-all}</style>
 
 
 <p>The only other style that is special is "style" itself, which has to include an escape character to avoid being taken literally.</p>
